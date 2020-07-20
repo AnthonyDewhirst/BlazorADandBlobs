@@ -1,11 +1,8 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Blazor.Shared;
-using Blazor.Shared.Config;
-using Blazor.Shared.Core;
-using Blazor.Shared.Data;
-using Blazor.WebAssemblyShared.Core;
+using Blazor.WA.Config;
+using Blazor.WA.Core;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,9 +20,7 @@ namespace Blazor.WA
             builder.Configuration.Bind("StorageAccount", storageAccountConfig);
             builder.Services.AddSingleton(storageAccountConfig);
 
-            builder.Services.AddTransient<ICommonAccessTokenProvider, WebAssemblyAccessTokenProvider>();
             builder.Services.AddTransient<AccessTokenProviderTokenCredential>();
-            builder.Services.AddSingleton<SimpleSessionState>();
 
             builder.Services.AddTransient(sp =>
                 new HttpClient

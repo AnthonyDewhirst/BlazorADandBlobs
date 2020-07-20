@@ -1,4 +1,33 @@
-﻿@page "/reports"
+﻿@page "/"
 @attribute [Authorize]
+@inherits ReportsBase
 
-<ListReports />
+
+<h1>Reports</h1>
+
+@if (Reports == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var reportName in Reports)
+        {
+            <tr>
+                <td>@reportName</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="@(() => ViewReport(reportName))">View</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
