@@ -21,7 +21,10 @@ namespace Blazor.WA.Core
 
         public override async ValueTask<AccessToken> GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
         {
-            var result = await _accessTokenProvider.RequestAccessToken();
+            var result = await _accessTokenProvider.RequestAccessToken(new AccessTokenRequestOptions
+            {
+                Scopes = requestContext.Scopes
+            });
 
             if (result.Status == AccessTokenResultStatus.RequiresRedirect)
             {

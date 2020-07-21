@@ -4,7 +4,7 @@
 
 <h1>View Report</h1>
 
-@if (Blob == null)
+@if (Blob == null && string.IsNullOrEmpty(Json))
 {
     <p><em>Loading...</em></p>
 }

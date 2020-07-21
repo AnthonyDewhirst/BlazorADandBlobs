@@ -6,6 +6,7 @@ using Blazor.WA.Core;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Blazor.WA
 {
@@ -16,13 +17,16 @@ namespace Blazor.WA
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
+            builder.Logging.SetMinimumLevel(LogLevel.Trace);
+
             var storageAccountConfig = new StorageAccountConfig();
             builder.Configuration.Bind("StorageAccount", storageAccountConfig);
+            
             builder.Services.AddSingleton(storageAccountConfig);
 
             builder.Services.AddTransient<AccessTokenProviderTokenCredential>();
 
-            builder.Services.AddTransient(sp =>
+            builder.Services.AddScoped(sp =>
                 new HttpClient
                 {
                     BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
