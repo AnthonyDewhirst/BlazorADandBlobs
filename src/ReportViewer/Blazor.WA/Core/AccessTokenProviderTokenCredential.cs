@@ -21,10 +21,7 @@ namespace Blazor.WA.Core
 
         public override async ValueTask<AccessToken> GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
         {
-            var result = await _accessTokenProvider.RequestAccessToken(new AccessTokenRequestOptions
-            {
-                Scopes = new[] { "https://storage.azure.com/user_impersonation" }
-            });
+            var result = await _accessTokenProvider.RequestAccessToken();
 
             if (result.Status == AccessTokenResultStatus.RequiresRedirect)
             {
