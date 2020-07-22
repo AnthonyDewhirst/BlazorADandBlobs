@@ -59,7 +59,7 @@ namespace Blazor.WA.Pages
         }
 
         private async Task LoadViaClient(string reportName)
-        {
+        {   
             var client = new BlobContainerClient(StorageAccountConfig.Uri, Credential);
             var blobClient = client.GetBlockBlobClient(reportName);
 
@@ -88,6 +88,9 @@ namespace Blazor.WA.Pages
             var headerValue = "Bearer " + await GetTokenAsync();
             httpRequestMessage.Headers.Add(HttpHeader.Names.Authorization, headerValue);
 
+
+            Logger.LogInformation($"headerValue: {headerValue}");
+
             // Send the request.
             using var httpResponseMessage = await HttpClient.SendAsync(httpRequestMessage, CancellationToken.None);
 
@@ -95,7 +98,7 @@ namespace Blazor.WA.Pages
             //   parse the XML response for the container names.
             if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
             {
-                Logger.LogInformation($"Returned request id was: {httpResponseMessage.Headers.GetValues("x-ms-client-request-id").FirstOrDefault()}");
+                Logger.LogInformation($"Returned request (x-ms-client-request-id) id was: {httpResponseMessage.Headers.GetValues("x-ms-client-request-id").FirstOrDefault()}");
 
                 Json = await httpResponseMessage.Content.ReadAsStringAsync();
 
