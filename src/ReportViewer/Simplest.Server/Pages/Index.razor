@@ -1,0 +1,41 @@
+﻿@page "/"
+@using Azure.Storage.Blobs
+@using Azure.Storage.Blobs.Specialized
+@using Azure.Core
+@using System.Threading
+
+
+<div>
+    <button @onclick="OnLoad">Press me</button>
+</div>
+
+
+@code
+{
+    public async Task OnLoad()
+    {
+        var reportName = "<name of a blob here>";
+        var uri = new Uri("https://<your storage account name here>.blob.core.windows.net/<container name here>");
+
+        var client = new BlobContainerClient(uri, new AccessTokenProviderTokenCredential());
+        var blobClient = client.GetBlockBlobClient(reportName);
+
+        var blob = await blobClient.DownloadAsync();
+    }
+
+
+    public class AccessTokenProviderTokenCredential : TokenCredential
+    {
+        private string _bearerToken = @"<Put you bearer token here>";
+
+        public override ValueTask<AccessToken> GetTokenAsync(TokenRequestContext requestContext, CancellationToken cancellationToken)
+        {
+            return new ValueTask<AccessToken>(GetToken(requestContext, cancellationToken));
+        }
+
+        public override AccessToken GetToken(TokenRequestContext requestContext, CancellationToken cancellationToken)
+        {
+            return new AccessToken(_bearerToken, DateTimeOffset.UtcNow.AddHours(1));
+        }
+    }
+}

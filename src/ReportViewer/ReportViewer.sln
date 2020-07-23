@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplest.WA", "Simplest.WA\Simplest.WA.csproj", "{F1D8577A-538B-49EB-A918-26AD42C7B0F5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simplest.Server", "Simplest.Server\Simplest.Server.csproj", "{3BC035E4-1E5B-4CAB-80CF-F1FCBE1D63DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{F1D8577A-538B-49EB-A918-26AD42C7B0F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D8577A-538B-49EB-A918-26AD42C7B0F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D8577A-538B-49EB-A918-26AD42C7B0F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BC035E4-1E5B-4CAB-80CF-F1FCBE1D63DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BC035E4-1E5B-4CAB-80CF-F1FCBE1D63DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BC035E4-1E5B-4CAB-80CF-F1FCBE1D63DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BC035E4-1E5B-4CAB-80CF-F1FCBE1D63DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
